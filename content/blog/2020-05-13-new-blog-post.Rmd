@@ -1,0 +1,25 @@
+---
+title: New Blog Post
+author: ''
+date: '2020-05-13'
+slug: new-blog-post
+categories: []
+tags: []
+description: ''
+---
+
+```{python}
+##python code chunk
+print("hello world")
+x="dog"
+```
+
+```{R}
+library(reticulate)
+## R code chunk 
+py$x
+y<-2
+```
+
+```{python}
+r.y+1== 3

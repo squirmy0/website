@@ -1,0 +1,225 @@
+---
+title: 'Project 2 Modeling Data Analysis'
+author: Grant Sinclair gs27275
+date: "2020-05-13"
+output:  html_document
+---
+
+```{r setup, include=FALSE}
+
+library(knitr)
+hook_output = knit_hooks$get('output')
+knit_hooks$set(output = function(x, options) {
+  # this hook is used only when the linewidth option is not NULL
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    # any lines wider than n should be wrapped
+    if (any(nchar(x) > n)) x = strwrap(x, width = n)
+    x = paste(x, collapse = '\n')
+  }
+  hook_output(x, options)
+})
+
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE,fig.align="center",warning=FALSE,message=FALSE,fig.width=8, fig.height=5, linewidth=60)
+options(tibble.width = 100,width = 100)
+library(tidyverse)
+library(sandwich); library(lmtest)
+library(devtools)
+library(interactiveDisplayBase)
+```
+
+```{r}
+#DATASET 
+library(tidyverse)
+library("readxl")
+cars <- read.csv("~/cars.csv")
+sdata <- read.csv("~/sdatareal.csv")
+
+library(ggplot2)
+head(cars)
+glimpse(cars)
+cars <- as.data.frame(cars) 
+head(sdata)
+sdata <- as.data.frame(sdata) 
+glimpse(sdata)
+
+#Joining
+carspeedfulljoin<-inner_join(cars, sdata, by= c("speed", "speed"), suffix=c("cars", "sdata"))
+glimpse(carspeedfulljoin)
+
+```
+
+*Introduction:*
+*The dataset I chose for this project is the same dataset I used for project 1. I will be using the joined version of the two datasets for this project. The two data sets were chosen from https://vincentarelbundock.github.io/Rdatasets/datasets.html and are having to due with cars that had been pulled over and whether or not they received a ticket. While this data may seem mundane, I chose it because I believe I may find a strong correlation between an unthought of variable and whether or not a car receieves a ticket. The data I am analyzing contains the main variables speed(how fast the vehicle was going when pulled over), distance(how far the car travel before stopping), period(the time of day the car was pulled over, distinguished by 3, 8 hour periods), warning(whether or not the vechicle received a warning, pair(how many people were in the given vehicle), and ticket (whether or not the vehicle recieved a ticket). Initially, the strongest association I may expect to see is between time period and people in the car, as certain times of day may increase the amount of people traveling together. For example more people may travel together at night due to dinner plans or an evening event. Intutively, the other variables would not seem to have a strong assocation, however I am interested to see if there is an unexpected assocation. The data has 8 variables and 258 observations.*
+
+
+```{R}
+project2dat <- manova(cbind(speed,period,pair)~ticket,data=carspeedfulljoin)
+summary(project2dat)
+summary.aov(project2dat)
+pairwise.t.test(carspeedfulljoin$speed,carspeedfulljoin$ticket,p.adj="none")
+pairwise.t.test(carspeedfulljoin$period,carspeedfulljoin$ticket,p.adj="none")
+pairwise.t.test(carspeedfulljoin$pair,carspeedfulljoin$ticket,p.adj="none")
+#error
+1-(.95)^16
+.05/16
+```
+*Running a manova to test to see if speed,time period, and group size had a
+mean difference against ticket status, it seems that there was as the p-value generated was less than 0.05 and was
+2.2e-16. After running an manova, an anova was used to test to see which ones of the variables had a
+mean difference. Time period and group pair were the only variables that had a mean difference
+while speed did not as the p-value was 0.1479 and the other p-values were below 0.05. After the
+anova, a pairwise t test was run for speed,period , and pair. Although speed did not show to have a mean difference in the anova test, it was run anyways for fun :). The pairwise t-tests showed that the period and pair
+variables showed a difference between yes and no ticket status, as they were below 0.05. Speed on the other hand, did not show a difference between yes and no ticket status.*
+
+
+```{R}
+#Randomized Testing
+carspeedfulljoin%>%group_by(ticket)%>%summarize(mean_speed=mean(speed))
+24-23.6
+rand_dist<-vector()
+for(i in 1:5000){
+Randata<-data.frame(ticket=sample(carspeedfulljoin$ticket),speed=carspeedfulljoin$speed)
+rand_dist[i]<-mean(Randata[Randata$ticket=="yes",]$speed)-
+mean(Randata[Randata$ticket=="no",]$speed)}
+mean(rand_dist>0.4)*2
+{hist(rand_dist,main="",ylab="");abline(v=0.4,col="red")}
+```
+*A randomized test was used to take a sample of ticket status and pullit 5,000 times and then take the
+mean of yes and no ticket status of speed were subtracted to find the difference. After running a randomized
+test, I then found the p-value of a two-tailed test and it was greater than 0.05, as it was 0.2364. I then
+plotted a histogram to show the null distribution and test statistic. The null hypothesis is that there is
+no difference in speed in yes and no ticket status, and the alternative hypothesis is that there is a difference
+in speed in yes and no ticket status. From the randomized test and finding the p-value, we fail to reject the null
+hypothesis.*
+```{r}
+#Linear Regression
+
+fitdat <- lm(period~speed*ticket, data=carspeedfulljoin)
+coef(fitdat)
+ggplot(fitdat, aes(x=speed,y=period, color=ticket)) +geom_point(shape=1) + geom_smooth(method = "lm") + ggtitle ("Linear Regression Predicting Period with Speed and Ticket Status") + ylab("Time Period") + xlab("Speed")+ labs(color="Ticket Status")
+#assumptions
+resids<-fitdat$residuals
+fitvals<-fitdat$fitted.values
+ggplot()+geom_point(aes(fitvals,resids))+geom_hline(yintercept=0, color='red')
+ggplot()+geom_histogram(aes(resids), bins=20)
+ggplot()+geom_qq(aes(sample=resids))+geom_qq_line()
+#robust standard errors
+summary(fitdat)$coef[,1:2] #uncorrected
+#corrected code here
+coeftest(fitdat, vcov = vcovHC(fitdat))[,1:2] 
+```
+*After running a linear regression,the coefficent estimates for speed was -3.107139e-16, yes for ticket status
+was -6.139303e-01 and the speed:yes for ticket status was -2.545601e-02. I then plotted Speed vs Time Period in yes and no ticket status and saw that there was a higher interaction in yes than no ticket status. I then checked
+assumptions, and every single one was failed. The assumption graphs did not exhibit, homoskedacity, normality, or linearity, and were very weird. Thus, I am taking the results with a grain of salt.*
+```{r}
+#Bootstrapped Standard Error
+library(ggplot2)
+boot<-carspeedfulljoin[sample(nrow(carspeedfulljoin),replace=TRUE),]
+samp_distn<-replicate(5000, {
+boot<-carspeedfulljoin[sample(nrow(carspeedfulljoin),replace=TRUE),]
+fitdat2<-lm(pair~speed*ticket,data=carspeedfulljoin)
+coef(fitdat2)
+})
+samp_distn%>%t%>%as.data.frame%>%summarize_all(sd)
+
+```
+
+
+```{r}
+#Logistic Regression 
+install.packages('cluster')
+library(cluster)
+library(tidyverse)
+fitdat2<-glm(ticket~period+speed+pair, data=carspeedfulljoin, family="binomial")
+coeftest(fitdat2)
+
+#confusion matrix
+prob <- predict(fitdat2,type="response")
+table(predict=as.numeric(prob>.5),yes=carspeedfulljoin$warning)%>%addmargins
+
+class_diag<-function(prob,yes){
+tab<-table(factor(prob>.5,levels=c("FALSE","TRUE")),yes)
+acc=sum(diag(tab))/sum(tab)
+sens=tab[2,2]/colSums(tab)[2]
+spec=tab[1,1]/colSums(tab)[1]
+ppv=tab[2,2]/rowSums(tab)[2]
+if(is.numeric(yes)==FALSE & is.logical(yes)==FALSE) yes<-as.numeric(yes)-1
+#CALCULATE EXACT AUC
+ord<-order(prob, decreasing=TRUE)
+prob <- prob[ord]; yes <- yes[ord]
+TPR=cumsum(yes)/max(1,sum(yes))
+FPR=cumsum(!yes)/max(1,sum(!yes))
+dup<-c(prob[-1]>=prob[-length(prob)], FALSE)
+TPR<-c(0,TPR[!dup],1); FPR<-c(0,FPR[!dup],1)
+n <- length(TPR)
+auc<- sum( ((TPR[-1]+TPR[-n])/2) * (FPR[-1]-FPR[-n]) )
+data.frame(acc,sens,spec,ppv,auc)
+}
+
+class_diag(prob,carspeedfulljoin$ticket)
+
+#ROCplot
+library(plotROC)
+
+carspeedfulljoin$logit <- predict(fitdat, data=carspeedfulljoin, type="response")
+carspeedfulljoin$ticket <-factor(carspeedfulljoin$ticket, levels=c("yes","no"))
+carspeedfulljoinlog <- carspeedfulljoin%>% mutate(ticket=ifelse(ticket=="yes","yes","no"))
+ggplot(carspeedfulljoinlog, aes(logit,fill=ticket))+geom_density(alpha=.3)+geom_vline(xintercept = 0,lty=2)+ggtitle("Density of log-odds by Ticket Status")
+
+RocPlot <- ggplot(carspeedfulljoin)+geom_roc(aes(d=ticket,m=prob),n.cut=0)
+RocPlot
+calc_auc(RocPlot)
+
+#10-fold
+set.seed(1234)
+k=10
+prodata<-carspeedfulljoin[sample(nrow(carspeedfulljoin)),] #randomly order rows
+folds<-cut(seq(1:nrow(carspeedfulljoin)),breaks=k,labels=FALSE) #create folds
+diags<-NULL
+for(i in 1:k){
+## Create training and test sets
+train<-prodata[folds!=i,]
+test<-prodata[folds==i,]
+yes<-test$ticket
+## Train model on training set
+fitdat3<-glm(ticket~.,data=carspeedfulljoin,family="binomial")
+probs2<-predict(fitdat3,newdata = test,type="response")
+## Test model on test set (save all k results)
+diags<-rbind(diags,class_diag(probs2,yes))
+}
+apply(diags,2,mean)
+```
+*A logistic regression was run and this time the intercepts tell us the interactions of speed, time period, and group size in a vehicle that receieved a ticket. The intercepts for period was -7.0423, speed was  2.6762e-02, and pair was
+-1.4652. The accuracy (1), sensitivity (1), specificity (1), and auc (1) was also
+computed. The auc is good since it is 1(the highest value) However, every value computed was 1 and is thus a little suspect. After running the 10-fold, the auc acutally decreased in value to 0.8.*
+```{r}
+
+#LASSO
+library(glmnet)
+x <- model.matrix(fitdat)[,-1]
+y<-as.matrix(carspeedfulljoin$ticket)
+cv<-cv.glmnet(x,y,family='binomial')
+lassodat<-glmnet(x,y,family='binomial',lambda=cv$lambda.1se)
+coef(lassodat)
+
+
+set.seed(1234)
+k=10
+prodata2<-carspeedfulljoin[sample(nrow(carspeedfulljoin)),]
+folds<-cut(seq(1:nrow(carspeedfulljoin)),breaks=k,labels=F)
+diags<-NULL
+for(i in 1:k){ # FOR EACH OF 10 FOLDS
+train2<-prodata2[folds!=i,] #CREATE TRAINING SET
+test2<-prodata2[folds==i,] #CREATE TESTING SET
+yes2<-test2$ticket
+
+probs3<- predict(fitdat,newdata=test2, type="response")
+diags<-rbind(diags,class_diag(probs3,yes2))
+}
+apply(diags,2,mean)
+```
+A lasso regression was done and the auc was actually lower than then when I ran the original logistic regression.
+The auc here is 0.8 and the one above was 1. This was after running the 10-fold as well, and
+the LASSO accuracy(0.07707692) was not as high when running the logistic regression. Overall my data was very weird which likely explains why the numbers generated were strange / not expected.
+```{R}

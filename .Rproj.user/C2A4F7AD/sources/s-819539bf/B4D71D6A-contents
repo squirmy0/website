@@ -1,0 +1,126 @@
+---
+title: 'Project 1 Explanatory Data Analysis'
+author: Grant Sinclair gs27275
+date: '2020-05-13'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Data sets
+library(tidyverse)
+library("readxl")
+cars <- read.csv("~/cars.csv")
+sdata <- read.csv("~/sdatareal.csv")
+
+library(ggplot2)
+head(cars)
+glimpse(cars)
+cars <- as.data.frame(cars) 
+head(sdata)
+sdata <- as.data.frame(sdata) 
+glimpse(sdata)
+
+```
+
+*Introduction:*
+*The two data sets I chose were chosen from https://vincentarelbundock.github.io/Rdatasets/datasets.html and are having to due with cars that had been pulled over and whether or not they received a ticket. While this data may seem mundane, I chose it because I believe I may find a strong correlation between an unthought of variable and whether or not a car receieves a ticket. The data I am analyzing contains the variables speed(how fast the vehicle was going when pulled over), distance(how far the car travel before stopping), period(the time of day the car was pulled over, distinguished by 3, 8 hour periods), warning(whether or not the vechicle received a warning, pair(how many people were in the given vehicle), and ticket (whether or not the vehicle recieved a ticket). Initially, the strongest association I may expect to see is between time period and people in the car, as certain times of day may increase the amount of people traveling together. For example more people may travel together at night due to dinner plans or an evening event. Intutively, the other variables would not seem to have a strong assocation, however I am interested to see if there is an unexpected assocation.*
+
+
+```{R}
+midprojectpart1 <- sdata
+
+midprojectpart1 <- sdata %>%
+  pivot_wider(names_from = "warning", values_from = "period") %>%
+  glimpse()
+
+midprojectpart1 <- midprojectpart1 %>%
+  pivot_longer(c("1","2"),names_to = "warning",values_to = "period", values_drop_na=T ) %>%
+  glimpse()
+```
+*Because my data was already tidy, I pivoted wider by making a yes and no columns with the warning status of each car pulled over and then proceeded to pivot longer to condense the yes and no columns into one column called "warning". This made the data easier to read. values_drop_na=T was used to omit the NAs.*
+
+
+```{R}
+#Joining
+carspeedfulljoin<-inner_join(cars, sdata, by= c("speed", "speed"), suffix=c("cars", "sdata"))
+glimpse(carspeedfulljoin)
+```
+*For joining, both datasets "cars" and "sdata" were joined using a fulljoin by the common variable, speed, while retaining all of the other variables unique to each data set. This join made the data clear and cohesive to read. The joined data was named "carspeedfulljoin".*
+```{r}
+#Wrangling
+install.packages("kableExtra")
+library(knitr)
+library(kableExtra)
+
+joindatomit<- carspeedfulljoin %>% filter(complete.cases(carspeedfulljoin))
+carspeedfulljoin %>% select(period, speed)
+carspeedfulljoin %>% arrange(desc(period))
+carspeedfulljoin %>% group_by(period, speed) %>% summarize(mean_speed=mean(speed, na.rm=T))
+carspeedfulljoin %>% mutate_if(is.numeric, round)
+carspeedfulljoin %>% summarize_all(n_distinct)
+
+joindatomit %>% group_by(warning) %>% summarize(sd_speed=sd(speed), mean_speed=mean(speed), var_speed=var(speed), max_speed=max(speed), min_speed=min(speed), quan_speed=quantile(speed, .85), n_dist_speed=n_distinct(speed), n(), cor_speed=cor(warning, speed), median_speed=median(speed), mad_speed=mad(speed))
+
+joindatomit %>% group_by(warning, period) %>% summarize(sd_speed=sd(speed), mean_speed=mean(speed), var_speed=var(speed), max_speed=max(speed), min_speed=min(speed), quan_speed=quantile(speed, .85), n_dist_speed=n_distinct(speed), n(), cor_speed=cor(period, speed), median_speed=median(speed), mad_speed=mad(speed))
+
+joindatomit %>% group_by(warning) %>% summarize(sd_pair=sd(pair), mean_pair=mean(pair), var_pair=var(pair), max_pair=max(pair), min_pair=min(pair), quan_pair=quantile(pair, .85), n_dist_pair=n_distinct(pair), n(), cor_pair=cor(speed, pair), median_pair=median(pair), mad_pair=mad(pair))
+
+joindatomit %>% group_by(warning, period) %>% summarize(sd_pair=sd(pair), mean_pair=mean(pair), var_pair=var(pair), max_pair=max(pair), min_pair=min(pair), quan_pair=quantile(pair, .85), n_dist_pair=n_distinct(pair), n(), cor_pair=cor(speed, pair), median_pair=median(pair), mad_pair=mad(pair))
+
+joindatomit %>% group_by(warning) %>% summarize(sd_period=sd(period), mean_period=mean(period), var_period=var(period), max_period=max(period), min_period=min(period), quan_period=quantile(period, .85), n_dist_period=n_distinct(period), n(), cor_period=cor(speed, period), median_period=median(period), mad_period=mad(period))
+
+joindatomit %>% group_by(warning, speed) %>% summarize(sd_period=sd(period), mean_period=mean(period), var_period=var(period), max_period=max(period), min_period=min(period), quan_period=quantile(period, .85), n_dist_period=n_distinct(period), n(), cor_period=cor(speed, period), median_period=median(period), mad_period=mad(period))
+
+```
+*For Wrangling, the dplyr functions filter, select, arrange, group_by, mutate, and summarize were utilized. 10 different summary statistics were also computed which include sd, mean, var, max, min, quantile, n_distinct, cor, median, and mad. 4 variables, period, pair, speed, and warning were used for the summary statistics. The pair variable indicate how many people were in a given vechicle. These variables were grouped by the categorical variable,"warning", and then by "warning" and "period" together. I chose to generate these summary statistics for car speed, pair. It was interesting how the number people in the car related with the speed of the vehcile and whether or not the vehicle received a warning.*
+```{r}
+#Visualizing
+library(ggplot2)
+
+ggplot(joindatomit, aes(pair, period)) + geom_point(aes(color=ticket, size=speed)) +ggtitle("Number of Tickets vs. Time Period According to Warning Status and Speed")+theme_minimal()+ scale_color_brewer(palette="Dark2") +scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +scale_y_continuous(breaks = scales::pretty_breaks(n = 10))
+
+ggplot(joindatomit, aes(x=speed, y=period, fill=ticket)) +geom_bar(stat="summary", fun.y="mean")+geom_errorbar(stat="summary")+ ggtitle("Speed vs. Time Period of Individuals pulled over")+theme_dark()+ scale_fill_brewer(palette="PuBu")
+
+joindatomit %>% select_if(is.numeric) %>% cor %>% as.data.frame %>% rownames_to_column %>% pivot_longer(-1) %>% ggplot(aes(rowname, name, fill=value)) + geom_tile() + geom_text(aes(label=round(value, 2))) + xlab("") + ylab("") + scale_fill_gradient2(low="red", high="blue") +ggtitle("Correlation Heatmap of Numeric Variables")
+
+```
+*For the first visualization, a scatter plot shows the linear relationship between the number of people in a vehcile vs. the the time period of the day, according to the speed and ticket status. According to this graph, there doesnt really appear to be a distinct relationship between the variables. The time of the day, the amount of indiviudals in the vehicle, and the speed of the car don't seem to have a significant relationship as almsot every vehicle received a ticket.*
+
+*The second visualization is a bar plot called "Speed vs. Time Period of Individuals pulled over." According to this chart, vehicles that were pulled over at an earlier time in the day tend to receieve a much higher amount of tickets as opposed to vehicles pulled over later in the day.*
+
+*The third vizualization displays a correlation heatmap of the numeric variables. The correlations that this visualization displays are not very high at all, indicating no relationship or assocation amongst the variables. The strongest correlation was found to be speed and distance at .59, which is a roughly moderate correlation. Similarly to the first graph, I was surprised to see that correlations amongst the numeric variables was very weak.*
+```{r}
+#Dimentionality Reduction
+install.packages('cluster')
+library(cluster)
+library(tidyverse)
+
+pam2<-joindatomit%>%select(-period, -speed, -pair, -ticket)%>%pam(3)
+
+sil_width<-vector() 
+for(i in 2:10){
+pam_fit <- joindatomit%>%select(-period, -speed, -pair, -ticket)%>%pam(i)
+sil_width[i] <- pam_fit$silinfo$avg.width }
+ggplot()+geom_line(aes(x=1:10,y=sil_width))+scale_x_continuous(name="k",breaks=1:10)
+
+finallydone<-joindatomit%>%mutate(cluster=as.factor(pam2$clustering))
+
+conmat<-finallydone%>%group_by(period, speed, pair, ticket)%>%count(cluster)%>%arrange(desc(n))%>%
+pivot_wider(names_from="cluster",values_from="n",values_fill = list('n'=0))
+
+conmat
+
+ggplot(finallydone, aes(x=period,y=pair, color=cluster))+ ggtitle("Time Period vs. Pair")+geom_point()
+
+plot(pam2,which=2)
+
+library(GGally)
+ggpairs(finallydone, columns=5:9, aes(color=cluster))
+```
+*For the final part of the project, I utilzied 3 clusters according to the sil_width graph. The average silhouette width value computed was .71 according to the silhouette plot. According to this value, "a strong structure has been found.  I visualized all pairwise combinations of the numeric variables in the dataset. The correlation of people in a given vehicle and period of the day were found to be the highest. However despite this, this correlation was moderate. This kind of makes sense because there might be certain times of day were people would travel together like going to dinner or an evening event. The other variables had weak correlations which is to be expected as you shouldn't expect an increase in ticket frequency based on people in the car or time period of the day. Overall the data appears to make sense if you think about it, but it is interesting see weak correlations amongst variables that I personally would have thought to have been higher.*
+
+```{R}

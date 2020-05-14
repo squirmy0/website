@@ -1,0 +1,13 @@
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ [K]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ 
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ lz[Ks
+config.toml  [0m[01;34mcontent[0m  index.Rmd  [01;34mpublic[0m  [01;34mstatic[0m  [01;34mthemes[0m  website.Rproj
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git init
+Initialized empty Git repository in /stor/home/gs27275/website/.git/
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ ls -a
+[0m[01;34m.[0m  [01;34m..[0m  config.toml  [01;34mcontent[0m  [01;34m.git[0m  index.Rmd  [01;34mpublic[0m  [01;34m.Rproj.user[0m  [01;34mstatic[0m  [01;34mthemes[0m  website.Rproj
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git add.
+git: 'add.' is not a git command. See 'git --help'.
+
+The most similar command is
+	add
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git add .

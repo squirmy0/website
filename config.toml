@@ -26,7 +26,7 @@ theme = "hugo-sustain"
   Github        = "squirmy0"
   Email         = "squirmy0@gmail.com"
   Instagram     = "squirmy0"
-  Facebook      = "grant.sinclair.9803"
+  facebook      = "grant.sinclair.9803"
 
 ## Main Menu
 [[menu.main]]

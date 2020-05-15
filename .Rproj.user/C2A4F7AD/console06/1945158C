@@ -395,3 +395,106 @@ Password for 'https://squirmy0@github.com':
 remote: Invalid username or password.
 fatal: Authentication failed for 'https://github.com/squirmy0/website.git/'
 ]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git push -u origin master[7Pcommit -m"6th"[9Padd .
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git add .push -u origin master[7Pcommit -m"6th"
+[master e2e95d8] 6th
+ Committer: Grant Sinclair <gs27275@educcomp01.ccbb.utexas.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 25 insertions(+), 2 deletions(-)
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git commit -m"6th"[9Padd .push -u origin master
+Username for 'https://github.com': ^[[A^[[B^[[B            Squirmy0
+Password for 'https://Squirmy0@github.com': 
+Counting objects: 30, done.
+Delta compression using up to 16 threads.
+Compressing objects:   3% (1/27)   Compressing objects:   7% (2/27)   Compressing objects:  11% (3/27)   Compressing objects:  14% (4/27)   Compressing objects:  18% (5/27)   Compressing objects:  22% (6/27)   Compressing objects:  25% (7/27)   Compressing objects:  29% (8/27)   Compressing objects:  33% (9/27)   Compressing objects:  37% (10/27)   Compressing objects:  40% (11/27)   Compressing objects:  44% (12/27)   Compressing objects:  48% (13/27)   Compressing objects:  51% (14/27)   Compressing objects:  55% (15/27)   Compressing objects:  59% (16/27)   Compressing objects:  62% (17/27)   Compressing objects:  66% (18/27)   Compressing objects:  70% (19/27)   Compressing objects:  74% (20/27)   Compressing objects:  77% (21/27)   Compressing objects:  81% (22/27)   Compressing objects:  85% (23/27)   Compressing objects:  88% (24/27)   Compressing objects:  92% (25/27)   Compressing objects:  96% (26/27)   Compressing objects: 100% (27/27)   Compressing objects: 100% (27/27), done.
+Writing objects:   3% (1/30)   Writing objects:   6% (2/30)   Writing objects:  10% (3/30)   Writing objects:  13% (4/30)   Writing objects:  16% (5/30)   Writing objects:  20% (6/30)   Writing objects:  23% (7/30)   Writing objects:  26% (8/30)   Writing objects:  30% (9/30)   Writing objects:  33% (10/30)   Writing objects:  36% (11/30)   Writing objects:  40% (12/30)   Writing objects:  43% (13/30)   Writing objects:  46% (14/30)   Writing objects:  50% (15/30)   Writing objects:  53% (16/30)   Writing objects:  56% (17/30)   Writing objects:  60% (18/30)   Writing objects:  63% (19/30)   Writing objects:  66% (20/30)   Writing objects:  70% (21/30)   Writing objects:  73% (22/30)   Writing objects:  76% (23/30)   Writing objects:  80% (24/30)   Writing objects:  83% (25/30)   Writing objects:  86% (26/30)   Writing objects:  90% (27/30)   Writing objects:  93% (28/30)   Writing objects:  96% (29/30)   Writing objects: 100% (30/30)   Writing objects: 100% (30/30), 3.14 KiB | 642.00 KiB/s, done.
+Total 30 (delta 16), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/16)[Kremote: Resolving deltas:   6% (1/16)[Kremote: Resolving deltas:  18% (3/16)[Kremote: Resolving deltas:  31% (5/16)[Kremote: Resolving deltas:  37% (6/16)[Kremote: Resolving deltas:  43% (7/16)[Kremote: Resolving deltas:  50% (8/16)[Kremote: Resolving deltas:  56% (9/16)[Kremote: Resolving deltas:  62% (10/16)[Kremote: Resolving deltas:  68% (11/16)[Kremote: Resolving deltas:  75% (12/16)[Kremote: Resolving deltas:  81% (13/16)[Kremote: Resolving deltas:  87% (14/16)[Kremote: Resolving deltas:  93% (15/16)[Kremote: Resolving deltas: 100% (16/16)[Kremote: Resolving deltas: 100% (16/16), completed with 13 local objects.[K
+To https://github.com/squirmy0/website.git
+   af1e483..e2e95d8  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ R_PDFVIEWER=/usr/bin/xdg-open
+R_RD4PDF=times,inconsolata,hyper
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+LD_LIBRARY_PATH=/usr/lib/R/lib::/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/lib/server
+GATK_HOME=/stor/system/opt/gatk-3.6
+RS_RPOSTBACK_PATH=/usr/lib/rstudio-server/bin/rpostback
+LESSCLOSE=/usr/bin/lesspipe %s %s
+R_SHARE_DIR=/usr/share/R/share
+LANG=en_US.UTF-8
+HISTCONTROL=ignoreboth
+DISPLAY=:0
+RSTUDIO_HTTP_REFERER=https://educcomp01.ccbb.utexas.edu/rstudio/
+TAR=/bin/tar
+EDITOR=vi
+R_BROWSER=xdg-open
+R_DOC_DIR=/usr/share/R/doc
+R_SESSION_TMPDIR=/tmp/RtmplU6CeB
+LN_S=ln -s
+RSTUDIO_SESSION_ID=819539bf
+R_LIBS_USER=~/R/x86_64-pc-linux-gnu-library/3.4
+SCHRODINGER=/stor/system/opt/Schrodinger
+S_COLORS=auto
+R_INCLUDE_DIR=/usr/share/R/include
+USER=gs27275
+PAGER=/usr/bin/pager
+PWD=/stor/home/gs27275/website
+SSH_ASKPASS=rpostback-askpass
+HOME=/stor/home/gs27275
+SED=/bin/sed
+RSTUDIO_PANDOC=/usr/lib/rstudio-server/bin/pandoc
+R_PAPERSIZE=letter
+PHRED_PARAMETER_FILE=/usr/local/genome/lib/phredpar.datnexport
+WORK=/stor/work/SDS348_Spring2020
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+R_SYSTEM_ABI=linux,gcc,gxx,gfortran,?
+RSTUDIO=1
+R_ZIPCMD=/usr/bin/zip
+R_PAPERSIZE_USER=letter
+CLICOLOR_FORCE=1
+R_HOME=/usr/lib/R
+R_BZIPCMD=/bin/bzip2
+SCRATCH=/stor/scratch/SDS348_Spring2020
+RSTUDIO_USER_IDENTITY=gs27275
+RMARKDOWN_MATHJAX_PATH=/usr/lib/rstudio-server/resources/mathjax-26
+PICARD_HOME=/stor/system/opt/picard-tools-2.9.2
+TERM=xterm-256color
+R_PRINTCMD=/usr/bin/lpr
+R_GZIPCMD=/bin/gzip -n
+RSTUDIO_TERM=1945158C
+RSTUDIO_WINUTILS=bin/winutils
+SHLVL=3
+PROMPT_COMMAND=echo -ne "\033]0;${PWD/#${HOME}/~}\007"
+R_PLATFORM=x86_64-pc-linux-gnu
+RSTUDIO_SESSION_STREAM=gs27275-d
+R_LIBS_SITE=/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R/library
+MY_GROUP=SDS348_Spring2020
+R_UNZIPCMD=/usr/bin/unzip
+LOGNAME=gs27275
+GIT_ASKPASS=rpostback-askpass
+RSTUDIO_PROJ_NAME=website
+RSTUDIO_CONSOLE_WIDTH=127
+PATH=/stor/home/gs27275/bin:/stor/system/opt/cellranger-3.0.2:/stor/home/gs27275/bin:/stor/system/opt/cellranger-3.0.2:/stor/home/gs27275/bin:/stor/system/opt/cellranger-3.0.2:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin:bin/msys-ssh-1000-18:/usr/local/genome/binn:/opt/dell/srvadmin/bin:bin/msys-ssh-1000-18:/usr/local/genome/binn:bin/msys-ssh-1000-18:/usr/local/genome/binn
+RSTUDIO_CONSOLE_COLOR=256
+R_TEXI2DVICMD=/usr/bin/texi2dvi
+MAKE=make
+LESSOPEN=| /usr/bin/lesspipe %s
+_=/usr/bin/env
+D7C66A23
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ ^C
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git push -u origin master[7Pcommit -m"6th"[9Padd .push -u origin master
+^[[B    ^[[AUsername for 'https://github.com': 
+Password for 'https://[A@github.com': 
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/squirmy0/website.git/'
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git push -u origin master[7Pcommit -m"6th"[9Padd .

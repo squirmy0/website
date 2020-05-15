@@ -8,12 +8,12 @@
     "hash" : "0",
     "id" : "EC2AF906",
     "lastKnownWriteTime" : 1589516371,
-    "last_content_update" : 1589526418601,
+    "last_content_update" : 1589528010690,
     "path" : "~/website/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "34,104",
-        "scrollLine" : "16"
+        "cursorPosition" : "35,2",
+        "scrollLine" : "20"
     },
     "relative_order" : 2,
     "source_on_save" : false,

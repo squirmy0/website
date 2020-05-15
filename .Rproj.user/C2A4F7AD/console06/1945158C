@@ -372,3 +372,26 @@ To https://github.com/squirmy0/website.git
    7c3fe74..af1e483  master -> master
 Branch 'master' set up to track remote branch 'master' from 'origin'.
 push -u origin masteradd .[Kpush -u origin master[4Pcommit -m"fourht"add .[Kpush -u origin master[5Pcommit -m"third"push -u origin masteradd .[K
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git add .push -u origin master[5Pcommit -m"fifth"[1Ph"[1Ph"[1Ph"[1Ph"6h"th"
+[master 15fbda6] 6th
+ Committer: Grant Sinclair <gs27275@educcomp01.ccbb.utexas.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 12 files changed, 47 insertions(+), 12 deletions(-)
+ rewrite .Rproj.user/C2A4F7AD/console06/INDEX001 (70%)
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git commit -m"6th"[9Padd .push -u origin master
+Username for 'https://github.com': squirmy0
+Password for 'https://squirmy0@github.com': 
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/squirmy0/website.git/'
+]0;/stor/home/gs27275/website]0;gs27275@educcomp01: ~/website[01;32mgs27275@educcomp01[00m:[01;34m~/website[00m$ git push -u origin master[7Pcommit -m"6th"[9Padd .

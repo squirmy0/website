@@ -1,5 +1,5 @@
 {
-    "path" : "~/website/themes/hugo-sustain/static/css",
+    "path" : "~/website/public/blog",
     "sortOrder" : [
         {
             "ascending" : false,

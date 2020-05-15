@@ -6,18 +6,27 @@
     <description>Recent content in Blogs on Grant Sinclair Portfolio Website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 13 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Game of Codes: A Communication between R and Python</title>
+      <link>/blog/game-of-codes-a-communication-between-r-and-python/</link>
+      <pubDate>Fri, 15 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/game-of-codes-a-communication-between-r-and-python/</guid>
+      <description>Have you ever wondered how R studio and Python communicate with each other? Probably not, but let’s look at how these two coding languages communicate anyways. Our story takes place in Westeros, and is a tale of two lovers, Jon Snow, a steward of the Night’s Watch, and Ygritte, a wilding archer. The two don’t meet on the best circumstances, but have an instant spark, and obvious chemistry. Ygritte’s wit is as sharp as the blade she wields, and Jon’s is… well not so much.</description>
+    </item>
+    
+    <item>
       <title>New Blog Post</title>
-      <link>/blog/new-blog-post/</link>
+      <link>/blog/new-blog-post-test/</link>
       <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/blog/new-blog-post/</guid>
-      <description> ##python code chunk print(&amp;quot;hello world&amp;quot;) ## hello world x=&amp;quot;dog&amp;quot; library(reticulate) ## R code chunk py$x ## [1] &amp;quot;dog&amp;quot; y&amp;lt;-2 r.y+1== 3 ## True </description>
+      <guid>/blog/new-blog-post-test/</guid>
+      <description> ##python code chunk print(&amp;quot;welcome to my first blog&amp;quot;) ## welcome to my first blog x=&amp;quot;polarbear&amp;quot; library(reticulate) ## R code chunk py$x ## [1] &amp;quot;polarbear&amp;quot; y&amp;lt;-2 z &amp;lt;- 5 r.y+1== 3 ## True r.z+3 == 8 ## True </description>
     </item>
     
   </channel>

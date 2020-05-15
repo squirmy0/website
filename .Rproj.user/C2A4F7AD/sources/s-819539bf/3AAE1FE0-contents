@@ -2,16 +2,17 @@
 title: New Blog Post
 author: ''
 date: '2020-05-13'
-slug: new-blog-post
+slug: new-blog-post TEST
 categories: []
 tags: []
 description: ''
 ---
 
+
 ```{python}
 ##python code chunk
-print("hello world")
-x="dog"
+print("welcome to my first blog")
+x="polarbear"
 ```
 
 ```{R}

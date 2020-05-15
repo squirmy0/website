@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "3AAE1FE0",
-    "lastKnownWriteTime" : 1589410846,
-    "last_content_update" : 1589421823108,
+    "lastKnownWriteTime" : 1589571426,
+    "last_content_update" : 1589571507598,
     "path" : "~/website/content/blog/2020-05-13-new-blog-post.Rmd",
     "project_path" : "content/blog/2020-05-13-new-blog-post.Rmd",
     "properties" : {
-        "cursorPosition" : "26,3",
-        "scrollLine" : "0"
+        "cursorPosition" : "13,33",
+        "scrollLine" : "3"
     },
     "relative_order" : 8,
     "source_on_save" : false,

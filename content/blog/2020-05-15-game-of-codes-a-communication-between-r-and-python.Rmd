@@ -1,0 +1,23 @@
+---
+title: 'Game of Codes: A Communication between R and Python'
+date: '2020-05-15'
+slug: game-of-codes-a-communication-between-r-and-python
+categories: []
+tags: []
+description: ''
+---
+
+Have you ever wondered how R studio and Python communicate with each other? Probably not, but let's look at how these two coding languages communicate anyways. Our story takes place in Westeros, and is a tale of two lovers, Jon Snow, a steward of the Night's Watch, and Ygritte, a wilding archer. The two don't meet on the best circumstances, but have an instant spark, and obvious chemistry. Ygritte's wit is as sharp as the blade she wields, and Jon's is... well not so much.
+
+
+![](/blog/2020-05-15-game-of-codes-a-communication-between-r-and-python_files/04f.gif)
+```{R}
+library(reticulate)
+Ygritte<-"You know nothing Jon Snow"
+```
+
+```{python}
+Jon="Hodor?"
+print(r.Ygritte,Jon)
+```
+![](/blog/2020-05-15-game-of-codes-a-communication-between-r-and-python_files/hodor.jpg)

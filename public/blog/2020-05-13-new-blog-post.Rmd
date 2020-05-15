@@ -2,16 +2,17 @@
 title: New Blog Post
 author: ''
 date: '2020-05-13'
-slug: new-blog-post
+slug: new-blog-post TEST
 categories: []
 tags: []
 description: ''
 ---
 
+
 ```{python}
 ##python code chunk
-print("hello world")
-x="dog"
+print("welcome to my first blog")
+x="polarbear"
 ```
 
 ```{R}
@@ -19,7 +20,9 @@ library(reticulate)
 ## R code chunk 
 py$x
 y<-2
+z <- 5
 ```
 
 ```{python}
 r.y+1== 3
+r.z+3 == 8

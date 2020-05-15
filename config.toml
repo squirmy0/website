@@ -19,11 +19,20 @@ theme = "hugo-sustain"
   custom_css = []
   custom_js  = []
 
+
 [params.social]
+{{ if .Site.Params.Social.Instagram }}
+<li><a href="https://www.instagram.com/{{ .Site.Params.Social.Instagram }}"><i class="fa fa-instagram"></i></a></li>
+{{ end }}
+
+ {{ if .Site.Params.Social.Instagram }}
+<li><a href="https://www.facebook.com/{{ .Site.Params.Social.Instagram }}"><i class="fa fa-facebook"></i></a></li>
+{{ end }}
+
   Github        = "squirmy0"
-  Email         = "squirmy0@gmail.com"
+  Email         = "email@example.com"
   Instagram     = "squirmy0"
-  LinkedIn      = "username"
+  Facebook      = "grant.sinclair.9803"
 
 ## Main Menu
 [[menu.main]]
